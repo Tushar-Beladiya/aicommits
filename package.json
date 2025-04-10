@@ -1,7 +1,7 @@
 {
-  "name": "aicommits",
-  "version": "0.1.0",
-  "description": "AI-powered Git commit message generator",
+  "name": "aicommits-cli",
+  "version": "0.1.1",
+  "description": "AI-powered Git commit message generator using OpenAI",
   "main": "dist/index.js",
   "bin": {
     "aicommits": "./dist/bin/aicommits.js"
@@ -9,9 +9,10 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/index.js",
+    "start": "node dist/bin/aicommits.js",
     "dev": "tsc --watch",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node test-basic.cjs",
+    "lint": "tsc --noEmit",
     "prepare": "npm run build"
   },
   "keywords": [
@@ -19,9 +20,20 @@
     "commit",
     "ai",
     "openai",
-    "cli"
+    "cli",
+    "commit-message",
+    "gpt",
+    "automation"
   ],
-  "author": "",
+  "author": "Your Name <your.email@example.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Tushar-Beladiya/aicommits"
+  },
+  "homepage": "https://github.com/Tushar-Beladiya/aicommits#readme",
+  "bugs": {
+    "url": "https://github.com/Tushar-Beladiya/aicommits/issues"
+  },
   "license": "MIT",
   "dependencies": {
     "chalk": "^5.3.0",
@@ -39,5 +51,10 @@
   },
   "engines": {
     "node": ">=18.0.0"
-  }
+  },
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ]
 }
