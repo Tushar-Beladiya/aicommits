@@ -2,7 +2,6 @@ import { Command } from "commander";
 import chalk from "chalk";
 import { getConfig, setConfigValue, getAllConfig } from "../utils/config.js";
 
-console.log("config.ts");
 export function configCommand(program: Command): void {
   program
     .command("config")
