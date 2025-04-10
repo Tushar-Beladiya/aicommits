@@ -10,6 +10,13 @@ export interface GenerationOptions {
   "max-length"?: string | number;
 }
 
+// Define our own client options interface since the package doesn't export it
+interface ClientOptions {
+  apiKey: string;
+  baseURL?: string;
+  timeout?: number;
+}
+
 /**
  * Get an instance of the OpenAI client
  * @returns {OpenAI} The OpenAI client
@@ -23,7 +30,7 @@ export function getOpenAIClient(): OpenAI {
     );
   }
 
-  const config: OpenAI.ClientOptions = {
+  const config: ClientOptions = {
     apiKey,
   };
 
@@ -97,7 +104,10 @@ export async function generateCommitMessages(
       temperature: 0.7,
     });
 
-    return response.choices.map((choice) => choice.message.content.trim());
+    // Add null check for content property
+    return response.choices.map(
+      (choice) => choice.message.content?.trim() || ""
+    );
   } catch (error) {
     throw new Error(`OpenAI API error: ${(error as Error).message}`);
   }

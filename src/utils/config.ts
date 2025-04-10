@@ -1,15 +1,17 @@
 import Conf from "conf";
 
 // Configuration interface
-interface ConfigOptions {
-  generate: number;
-  locale: string;
-  type: string;
-  model: string;
-  "max-length": number;
+export interface ConfigOptions {
+  generate?: number;
+  locale?: string;
+  type?: string;
+  model?: string;
+  "max-length"?: number;
   OPENAI_KEY?: string;
   PROXY?: string;
   TIMEOUT?: number;
+  // Add an index signature to allow any string key
+  [key: string]: string | number | undefined;
 }
 
 // Default configuration values
@@ -30,7 +32,7 @@ export function getConfig(): Conf<ConfigOptions> {
 }
 
 // Get a specific configuration value
-export function getConfigValue(key: keyof ConfigOptions | string): unknown {
+export function getConfigValue(key: string): unknown {
   const config = getConfig();
   return config.get(key);
 }
@@ -44,5 +46,6 @@ export function setConfigValue(key: string, value: unknown): void {
 // Get all configuration values
 export function getAllConfig(): Record<string, unknown> {
   const config = getConfig();
-  return config.store as Record<string, unknown>;
+  // No need for type assertion since ConfigOptions now has an index signature
+  return config.store;
 }

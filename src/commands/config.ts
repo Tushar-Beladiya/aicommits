@@ -69,8 +69,8 @@ export function configCommand(program: Command): void {
         .description("Delete a configuration value")
         .argument("<key>", "Configuration key to delete")
         .action((key: string) => {
-          const config = getConfig();
-          config.delete(key);
+          // Using setConfigValue with undefined instead of config.delete
+          setConfigValue(key, undefined);
           console.log(chalk.green(`✅ Deleted ${key}`));
         })
     );
