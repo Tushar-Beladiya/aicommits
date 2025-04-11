@@ -16,7 +16,7 @@ AI-powered Git commit message generator using OpenAI.
 
 ```bash
 # Install globally
-npm install -g aicommits
+npm install -g aicommits-cli
 
 # Configure your OpenAI API key
 aicommits config set OPENAI_KEY=your-openai-api-key
