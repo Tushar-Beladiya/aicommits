@@ -2,6 +2,8 @@
 
 AI-powered Git commit message generator using OpenAI.
 
+![AI Commits Demo](./images/aicommits.png)
+
 ## Features
 
 - 🤖 Generate meaningful commit messages based on your staged changes

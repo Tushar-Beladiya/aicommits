@@ -48,7 +48,7 @@ export async function generateCommitMessage(
   const lines = [
     padLine(), // top padding
     padLine(), // top padding
-    padLine(chalk.green.bold("✨ Welcome to AI Commits v0.1.3 ✨")),
+    padLine(chalk.green.bold("✨ Welcome to AI Commits v0.1.6 ✨")),
     padLine(),
     padLine(chalk.yellow("Generate professional commit messages")),
     padLine(chalk.yellow("powered by OpenAI's GPT models")),
