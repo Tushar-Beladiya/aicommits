@@ -5,7 +5,6 @@ import { configCommand } from "./commands/config.js";
 
 // Create the command line program
 const program = new Command();
-console.log(program);
 // Set up the main program
 program
   .name("aicommits")
