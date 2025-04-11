@@ -1,5 +1,6 @@
 import inquirer from "inquirer";
 import chalk from "chalk";
+import stringWidth from "string-width";
 import ora from "ora";
 import {
   isGitRepository,
@@ -29,8 +30,37 @@ export async function generateCommitMessage(
     );
   }
 
-  // Show welcome message
-  console.log(chalk.blue("🤖 AI Commits - Generating commit message..."));
+  // Width of the box (including borders and padding)
+  const boxWidth = 60;
+
+  function padLine(content = "") {
+    const visibleLength = stringWidth(content);
+    const totalPadding = boxWidth - 4 - visibleLength; // 4 = borders + 2 spaces
+    const rightPadding = " ".repeat(totalPadding);
+    return (
+      chalk.cyan("│") + " " + content + rightPadding + " " + chalk.cyan("│")
+    );
+  }
+
+  const topBorder = chalk.cyan("┌" + "─".repeat(boxWidth - 2) + "┐");
+  const bottomBorder = chalk.cyan("└" + "─".repeat(boxWidth - 2) + "┘");
+
+  const lines = [
+    padLine(), // top padding
+    padLine(), // top padding
+    padLine(chalk.green.bold("✨ Welcome to AI Commits v0.1.2 ✨")),
+    padLine(),
+    padLine(chalk.yellow("Generate professional commit messages")),
+    padLine(chalk.yellow("powered by OpenAI's GPT models")),
+    padLine(),
+    padLine(chalk.blue("➜ Analyzes your code changes intelligently")),
+    padLine(chalk.blue("➜ Creates clear, concise commit messages")),
+    padLine(chalk.blue("➜ Follows best practices automatically")),
+    padLine(), // bottom padding
+    padLine(), // bottom padding
+  ];
+
+  console.log([topBorder, ...lines, bottomBorder].join("\n"));
 
   // Get staged diff
   const spinner = ora("Fetching staged changes...").start();
